@@ -17,9 +17,27 @@
 
     <body style="background-image: url(assets/images/trivianight.jpg)">
 
-        <div id="quiz"></div>
-        <button id="submit"></button>
-        <div id="results"></div>
+        <div id= "box" class="container"> 
+
+            <!--Introduction Box-->
+            <div id="title">
+                <h3>The Office Trivia Game</h3> 
+            </div>
+
+            <button type="button" id="start-btn" class="btn btn-primary black-background white">START</button>
+
+            <!--Question Box-->
+            <div class="container">
+                <p id="remainingTime">Remaining Time:</p>
+                <p id="question"></p>
+                <p id="answerChoice"></p>
+            </div>
+
+            <!--Correct Answer Vs Incorrect Answer Box-->
+            <div id= "result"></div>
+
+        </div>
+
     
         <script src="assets/javascript/app.js"></script> 
     </body>
