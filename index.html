@@ -17,24 +17,37 @@
 
     <body style="background-image: url(assets/images/trivianight.jpg)">
 
-        <div id= "box" class="container"> 
+        <audio controls>
+            <source src="assets/images/The Office.mp3" type="audio/mp3"/>
+          </audio>
+
+        <div id="box" class="container"> 
 
             <!--Introduction Box-->
             <div id="title">
-                <h3>The Office Trivia Game</h3> 
+                <h3 class="intro">The Office Trivia Game</h3> 
+                <button type="button" id="start-btn" class="btn btn-primary black-background white">START</button>
             </div>
 
-            <button type="button" id="start-btn" class="btn btn-primary black-background white">START</button>
-
-            <!--Question Box-->
-            <div class="container">
+            
+            <!--Time remaining box-->
+            <div id= "timecount" class="container">
+                <h3 class="intro">The Office Trivia Game</h3> 
                 <p id="remainingTime">Remaining Time:</p>
-                <p id="question"></p>
-                <p id="answerChoice"></p>
+                <p id="time">30</p>
             </div>
 
-            <!--Correct Answer Vs Incorrect Answer Box-->
-            <div id= "result"></div>
+            <!--Question box-->
+            <div id="game">
+                <button type="button" class="btn btn-primary black-background white" id="submit-btn">Submit</button>
+            </div>
+
+            <!--Result Box-->
+            <div id= "result">
+                <p id="correctAnswer">Correct Answer:</p>
+                <p id="incorrectAnswer">Incorrect Answer:</p>
+            </div>
+
 
         </div>
 
