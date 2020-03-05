@@ -22,20 +22,20 @@ $("#timecount").hide();
 $("#game").hide();
 $('#result').hide();
 
-var startGame = $("#start-btn").on('click',function(){
+$("#start-btn").on('click',function(){
     $(this).parent().hide(); //hide the start box before user click start
     $('#timecount').show();
-    $('#remainingTime').show();
+    $('#game').show();
     countdown(32);
     questionDisplay ();
 
 })
 
-var result = {
-    correct: 0 ,
-    incorrect: 0 ,
-    unanswer: 0
-};
+// var result = {
+//     correct: 0 ,
+//     incorrect: 0 ,
+//     unanswer: 0
+// };
 
 // var timeCount = {
 //     timer: 30,
@@ -170,26 +170,27 @@ var questions = [
 var labels = ["Question 1:" , "Question 2:" , "Question 3:" , "Question 4:" , "Question 5:" , "Question 6:" , "Question 7:" , "Question 8:" , "Question 9:" , "Question 10:"]
 
 //Question Display function 
-var questionDisplay = function() {
-
+var questionDisplay = function() 
+{
+    //Create a loop to display question on a new Div
     for (var i=0 ; i < questions.length ; i++) {
-        $("#game").append(' <div class="' + questions[i].name + '"></div> ');
-        $(questions[i].class).append (' <div class="questionTitle"> ' + questions[i].question + ' </div> ');
+        console.log(questions[i]);
+        $("#game").append(questions[i].question);
+        $("#game").append(questions[i].answers.a);
+        
+        $("#game").append(questions[i].answers.b);
+        $("#game").append(questions[i].answers.c);
+        // $(questions[i].class).append (' <div class="questionTitle"> ' + questions[i].question + ' </div> ');
     }
 
-    for (var e = 0; e < labels.length , e++) {
-        var shortlabel = labels(e);
-        console.log (labels(e));
-    }
-
-    for (var j = 0 ; j <= question[i].answers.length ; j++ ) {
-    $(questions[i].Class).append( ' <input type="radio" name="' + questions[i].name + '"value=" ' + questions[i].answers[j] + ' "/>' 
-    +'<label for="' + labels[j] + ' "> ' + questions[i].answers[j] + ' </label> ');
-    }
+    // for (var j = 0 ; j < question[i].answers.length ; j++ ) {
+    // $(questions[i].Class).append( ' <input type="radio" name="' + questions[i].name + '"value=" ' + questions[i].answers[j] + ' "/>' 
+    // +'<label for="' + labels + ' "> ' + questions[i].answers[j] + ' </label> ');
+    // }
 
     $('#game').prepend('<hr />');
    }
-}
+})
 
 //Count down function
 var countdown = function(seconds) {
@@ -251,8 +252,3 @@ var gradeQuiz = $('#submit-btn').on('click', function(){
 
 })
 
-
-
-
-
-})
