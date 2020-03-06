@@ -139,17 +139,26 @@ var questionDisplay = function()
     for (var i=0 ; i < questions.length ; i++) {
         console.log(questions[i].question);
         var linebreak =$('<br />');
-        //var questionDiv = $('<div id= "question">');
-        //$("#game").append(questionDiv)
+        var questionDiv = $('<div id= "question">');
+        $("#game").append(questionDiv)
         $("#game").append(questions[i].question);
+        
+        $('#question').append(questions[i].answers.a)
+        $("#question").append('<input type="radio" name="questions" value="' + questions[i].answers.a + '"/>')
+        
+        $('#question').append(questions[i].answers.b)
+        $("#question").append('<input type="radio" name="questions" value="' + questions[i].answers.b + '"/>')
+        
+        $('#question').append(questions[i].answers.c)
         $('#game').append(linebreak);
+        $("#question").append('<input type="radio" name="questions" value="' + questions[i].answers.c + '"/>')
+        $('#game').append(linebreak);
+        
        
    
-        // $("#game").append(linebreak);
-        // $("#question").append(questions[i].answers.a);
+       
         
-        //   $("#game").append('<input type="radio" name="questions"value=" ' + questions[i].answers.a + ' "/>' 
-        //  +'<label for="Question 1:"> ' + questions[i].answers.a + ' </label> ')
+        
         // $("#game").append(questions[i].answers.b);
         //     $("#game").append(' <input type="radio" name="' + questions[i].question + '"value=" ' + questions[i].answers.b + ' "/>' 
         //     +'<label for="Question 1:"> ' + questions[i].answers.b + ' </label> ')
