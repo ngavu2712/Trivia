@@ -94,21 +94,8 @@ var questions = [
             class: 'forth' ,
             divClass: '.sandwich'
         } ,
-    
         {
-            question: "What did Kevin buy for himself when he got himself for Secret Santa?" ,
-            answers: {
-                a: "A foot massage" ,
-                b: "A foot bath" , 
-                c: " M&M’s"
-            } ,
-            correctAnswer: "A foot bath",
-            class: 'fifth' ,
-            divClass: '.kevin'
-        } ,
-    
-        {
-            quesiton: "What's Stanley's morning 3 by 5?" ,
+            question: "What's Stanley's morning 3 by 5?" ,
             answers: {
                 a: "Iced tea 3 sugars 5 creams" ,
                 b: "Coffee 3 sugars 5 creams" , 
@@ -118,19 +105,7 @@ var questions = [
             class: 'sixth' ,
             divClass: '.stanley'
         } ,
-    
-        {
-            question: "What's in the thermos that Michael offers Pam during morning deliveries for the Michael Scott Paper Company" ,
-            answers: {
-                a: "Milk and sugar" , 
-                b: "Cream and sugar" , 
-                c: "Coffee and sugar" 
-            } ,
-            correctAnswer: "Milk and sugar",
-            class: 'seventh' ,
-            divClass: '.pam'
-        } , 
-    
+
         {
             question: "What brand is Michael wearing on the day he accidentally wearing a woman's suit?" ,
             answers: {
@@ -141,18 +116,6 @@ var questions = [
             correctAnswer: "MISSsterious",
             class: 'eighth' ,
             divClass: '.suit'
-        } ,
-    
-        {
-            question: "What does Kevin say after Kelly yells that her middle name is Rajnigandha and that she hates it?" ,
-            answers: {
-                a: "What is Rajnigandha?" ,
-                b: "What an awful name" , 
-                c: "I thought Rajnigandha was a boy’s name" 
-            } ,
-            correctAnswer: "I thought Rajnigandha was a boy’s name",
-            class: 'nineth' ,
-            divClass: '.kelly'
         } ,
     
         {
@@ -167,19 +130,32 @@ var questions = [
             divClass: '.michael'
         } ];
 
-var labels = ["Question 1:" , "Question 2:" , "Question 3:" , "Question 4:" , "Question 5:" , "Question 6:" , "Question 7:" , "Question 8:" , "Question 9:" , "Question 10:"]
+//var labels = ["Question 1:" , "Question 2:" , "Question 3:" , "Question 4:" , "Question 5:" , "Question 6:" , "Question 7:" , "Question 8:" , "Question 9:" , "Question 10:"]
 
 //Question Display function 
 var questionDisplay = function() 
 {
     //Create a loop to display question on a new Div
     for (var i=0 ; i < questions.length ; i++) {
-        console.log(questions[i]);
+        console.log(questions[i].question);
+        var linebreak =$('<br />');
+        //var questionDiv = $('<div id= "question">');
+        //$("#game").append(questionDiv)
         $("#game").append(questions[i].question);
-        $("#game").append(questions[i].answers.a);
+        $('#game').append(linebreak);
+       
+   
+        // $("#game").append(linebreak);
+        // $("#question").append(questions[i].answers.a);
         
-        $("#game").append(questions[i].answers.b);
-        $("#game").append(questions[i].answers.c);
+        //   $("#game").append('<input type="radio" name="questions"value=" ' + questions[i].answers.a + ' "/>' 
+        //  +'<label for="Question 1:"> ' + questions[i].answers.a + ' </label> ')
+        // $("#game").append(questions[i].answers.b);
+        //     $("#game").append(' <input type="radio" name="' + questions[i].question + '"value=" ' + questions[i].answers.b + ' "/>' 
+        //     +'<label for="Question 1:"> ' + questions[i].answers.b + ' </label> ')
+        // $("#game").append(questions[i].answers.c);
+        //     $("#game").append(' <input type="radio" name="' + questions[i].question + '"value=" ' + questions[i].answers.c + ' "/>' 
+        //     +'<label for="Question 1:"> ' + questions[i].answers.c + ' </label> ')
         // $(questions[i].class).append (' <div class="questionTitle"> ' + questions[i].question + ' </div> ');
     }
 
@@ -188,7 +164,7 @@ var questionDisplay = function()
     // +'<label for="' + labels + ' "> ' + questions[i].answers[j] + ' </label> ');
     // }
 
-    $('#game').prepend('<hr />');
+    // $('#game').prepend('<hr />');
    }
 })
 
@@ -204,7 +180,7 @@ var countdown = function(seconds) {
             var incorrect =0;
             var unanswer =0;
 
-        for ( var c=0; c < 10 ; c++) {
+        for ( var c=0; c < questions.length ; c++) {
             if ($('input:radio[name="' + questions[c].name + ' "]:checked').val() === questions[c].correct) {
                 correct++;
                 console.log("this is correct! number: " + c);
