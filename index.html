@@ -42,23 +42,35 @@
             </div>
 
             <!-- Options box -->
-            <label class="option"><input type="radio" name="option" value='1'/> <span id="opt1"></span> </label>
-            <label class="option"><input type="radio" name="option" value='2'/> <span id="opt2"></span> </label>
-            <label class="option"><input type="radio" name="option" value='3'/> <span id="opt3"></span> </label>
+            <div id="optionalBox" class="container">
+                <div class="row">
+                  <div id="col1" class="col-sm">
+                    <label class="option"><input type="radio" name="option" value='1'/> </label>
+                  </div>
+                  <div id="col2"class="col-sm">
+                    <label class="option"><input type="radio" name="option" value='2'/> </label>
+                  </div>
+                  <div id="col3" class="col-sm">
+                    <label class="option"><input type="radio" name="option" value='3'/> </label>
+                  </div>
+                </div>
+              </div>
 
-            <!-- Next Button -->
-            <button id="next-Btn" class="next-Btn" onclick = "loadNextQuestion();">Next Question </button>
+
+          
 
             <!--Result Box-->
             <div id= "result">
                 <p id="correctAnswer">Correct Answer:</p>
                 <p id="incorrectAnswer">Incorrect Answer:</p>
+                <p id="unanswer">Unanswer:</p>
             </div>
 
 
         </div>
 
     
-        <script src="assets/javascript/app.js"></script> 
+        <script src="assets/javascript/app.js"></script>
+        <!--<script src="assets/javascript/question.js"></script> -->  
     </body>
     </html>

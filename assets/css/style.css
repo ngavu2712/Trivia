@@ -22,15 +22,26 @@ h3.intro {
     font-family: monospace;
     color: white;
 }
-div#question {
+div#questionBox {
     border: 2px dotted black;
     height: 100px;
     margin: 10px;
     white-space: normal;
 }
 
+div#optionBox {
+    border: 1px solid white;
+    
+}
 
+label.option {
+    border: 1px solid white;
+    
+}
 
+div.col-sm {
+    border: 1px solid black;
+}
 
 
 

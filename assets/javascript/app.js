@@ -17,17 +17,27 @@ Users choose their answer then hit Submit button, question box hide and result b
     EVENT LISTENER:
     Add event listener on START button and SUBMIT button 
   */
- $(document).ready(function(){
- 
-var currentQuestion = 0;
-var score = 0;
+
+$(document).ready(function(){
+
+$("#timecount").hide();
+$("#game").hide();
+$('#result').hide();
+
+$("#start-btn").on('click',function(){
+    $(this).parent().hide(); //hide the start box before user click start
+    $('#timecount').show();
+    $('#game').show();
+    countdown(3);
+    questionDisplay ();
+    //timeUp();
+
+})
 
 
-
-
-
-
-
+var correct = 0 ;
+var incorrect = 0 ;
+var unanswer = 0 ;
 
 // var timeCount = {
 //     timer: 30,
@@ -39,79 +49,80 @@ var questions = [
 
         { //Question, Options and Answer Object
     
-            "question": "A foreign exchange student lived with Michael when he was young. What did the foreign exchange student take from Michael back to Yugoslavia?" , 
-            "option1": "All of his blue jeans" , 
-            "option2": "All of his short" , 
-            "option3": "His favorite shoes" ,
-            "correctAnswer": "All of his blue jeans" 
-            
+            question: "A foreign exchange student lived with Michael when he was young. What did the foreign exchange student take from Michael back to what was formerly Yugoslavia?" , 
+            answers: {
+                a: "All of his blue jeans" , 
+                b: "All of his short" , 
+                c: "His favorite shoes"
+            } ,
+            correctAnswer: "All of his blue jeans" 
+
         } ,
         
         {
-            "question": "What does Kevin suggest Dwight put in his gun holster?" , 
-            "option1": "A cell phone" ,
-            "option2": "A banana" , 
-            "option3": "A toy gun" ,
-            "correctAnswer": "A banana"
+            question: "What does Kevin suggest Dwight put in his gun holster?" , 
+            answers: {
+                a: "A cell phone" ,
+                b: "A banana" , 
+                c: "A toy gun"
+            } , 
+            correctAnswer: "A banana"
             
         } , 
     
         {
-            "question": "At Phyllis and Bob Vance's wedding, what did Michael say everyone called Phyllis back in high school?" ,
-            "option1": "Less-urban Aunt Jemima" ,
-            "option2": "Phyll" , 
-            "option3": "Easy rider" ,
-            "correctAnswer": "Easy rider"
+            question: "At Phyllis and Bob Vance's wedding, what did Michael say everyone called Phyllis back in high school?" ,
+            answers: {
+                a: "Less-urban Aunt Jemima" ,
+                b: "Phyll" , 
+                c: "Easy rider" 
+            } ,
+            correctAnswer: "Easy rider"
 
         } , 
     
         {
-            "question": "What kind of sandwich does Michael have a dream about when he's the head of Michael Scott Paper Company?" ,
-            "option1": "Peanut butter and tunafish" ,
-            "option2": "Tunafish and skittles" , 
-            "option3": "Mayo and black olives" ,
-            "correctAnswer": "Peanut butter and tunafish"
+            question: "What kind of sandwich does Michael have a dream about when he's the head of Michael Scott Paper Company?" ,
+            answers: {
+                a: "Peanut butter and tunafish" ,
+                b: "Tunafish and skittles" , 
+                c: "Mayo and black olives" 
+            } ,
+            correctAnswer: "Peanut butter and tunafish"
 
         } ,
         {
-            "question": "What's Stanley's morning 3 by 5?" ,
-            "option1": "Iced tea 3 sugars 5 creams" ,
-            "option2": "Coffee 3 sugars 5 creams" , 
-            "option3": "Tea 3 sugar 5 creams" ,
-            "correctAnswer": "Iced tea 3 sugars 5 creams"
+            question: "What's Stanley's morning 3 by 5?" ,
+            answers: {
+                a: "Iced tea 3 sugars 5 creams" ,
+                b: "Coffee 3 sugars 5 creams" , 
+                c: "Tea 3 sugar 5 creams"
+            } ,
+            correctAnswer: "Iced tea 3 sugars 5 creams"
+
         } ,
 
         {
-            "question": "What brand is Michael wearing on the day he accidentally wearing a woman's suit?" ,
-            "option1": "MISSsterious" , 
-            "option2": "MISStery" , 
-            "option3": "Sassypant" ,
-            "correctAnswer": "MISSsterious"
-           
+            question: "What brand is Michael wearing on the day he accidentally wearing a woman's suit?" ,
+            answers: {
+                a: "MISSsterious" , 
+                b: "MISStery" , 
+                c: "Sassypant" 
+            } ,
+            correctAnswer: "MISSsterious"
+
         } ,
     
         {
-            "question": "Who does Michael wear on his head during the activity on diversity day?" , 
-            "option1": "Colin Powell" ,
-            "option2": "Ghandi" , 
-            "option3": "Martin Luther King Jr" ,
-            "correctAnswer": "Martin Luther King Jr"
+            question: "Who does Michael wear on his head during the activity on diversity day?" , 
+            answers: {
+                a: "Colin Powell" ,
+                b: "Ghandi" , 
+                c: "Martin Luther King Jr"
+            } ,
+            correctAnswer: "Martin Luther King Jr" 
         } ];
 
-
-        $("#timecount").hide();
-        $("#question").hide();
-        $('#result').hide();
-        
-        $("#start-btn").on('click',function(){
-            $(this).parent().hide(); //hide the start box before user click start
-            $('#timecount').show();
-            $('#question').show();
-            countdown(3);
-            questionDisplay ();
-         })  
-         
-         
 //Question Display function 
 var questionDisplay = function() 
     {
@@ -119,21 +130,23 @@ var questionDisplay = function()
     for (var i=0 ; i < questions.length ; i++) {
         console.log(questions[i].question);
         var linebreak =$('<br />');
-        //var questionDiv = $('<div id= "question"></div>');
-        //$("#game").append(questionDiv); 
-        $("#question").append(questions[i].question); //Append question list to the game
+        var questionDiv = $('<div id= "questionBox"></div>');
+        $(questionDiv).append(questions[i].question)
+        $("#question").append(questionDiv); 
 
-        $('.option').append(questions[i].answers.a); //Append answer "a" list to the game
-        $(".option").append('<input type="radio" name="questions" value="' + questions[i].answers.a + '"/>'); //Create an input ratio for multiple choice
+        //$("#questionBox").append(questions[i].question); //Append question list to the game
+
+        $('#col1').append(questions[i].answers.a); //Append answer "a" list to the game
+        //$('#opt1').append('<input type="radio" name="questions" value="' + questions[i].answers.a + '"/>'); //Create an input ratio for multiple choice
        
         
-        $('.option').append(questions[i].answers.b); //Append answer "b" list to the game
-        $(".option").append('<input type="radio" name="questions" value="' + questions[i].answers.b + '"/>');
+        $('#col2').append(questions[i].answers.b); //Append answer "b" list to the game
+        //$('#opt2').append('<input type="radio" name="questions" value="' + questions[i].answers.b + '"/>');
         
-        $('.option').append(questions[i].answers.c); //Append answer "c" list to the game
-        $(".option").append('<input type="radio" name="questions" value="' + questions[i].answers.c + '"/>');
+        $('#col3').append(questions[i].answers.c); //Append answer "c" list to the game
+        //$('#opt3').append('<input type="radio" name="questions" value="' + questions[i].answers.c + '"/>');
 
-        $('#game').append(linebreak);
+        $('#question').append(linebreak);
         
         }  
     }
@@ -148,9 +161,9 @@ var countdown = function(seconds) {
 
         if (seconds <= 0) {
             $('#countdown').fadeOut(500);
-            var correct =0;
-            var incorrect =0;
-            var unanswer =0;
+            correct =0;
+            incorrect =0;
+            unanswer =0;
 
         for ( var c = 0; c < questions.length ; c++) {
             if ($('input:radio[name="' + questions[c].correctAnswer + ' "]:checked').val() === questions[c].correctAnswer) {
@@ -199,5 +212,7 @@ var gradeQuiz = $('#submit-btn').on('click', function(){
 })
 
 //TimeUp function
-
+//var timeUp = function () {
+//   setTimeOut (countdown(),0);
+//}
 })
