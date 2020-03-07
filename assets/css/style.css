@@ -5,6 +5,7 @@ div#box {
     height: 1500px;
     font-family: monospace;
     font-size: 20px;
+    overflow: overlay;
 
 }
 
@@ -25,6 +26,7 @@ div#question {
     border: 2px dotted black;
     height: 100px;
     margin: 10px;
+    white-space: normal;
 }
 
 

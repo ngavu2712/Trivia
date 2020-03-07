@@ -34,13 +34,20 @@
             <div id= "timecount" class="container">
                 <h3 class="intro">Trivia Game</h3> 
                 <p id="remainingTime">Remaining Time:</p>
-                <p id="time"></p>
             </div>
 
             <!--Question box-->
-            <div id="game">
+            <div id="question" class="question">
                 <!-- <button type="button" class="btn btn-primary black-background white" id="submit-btn">Submit</button> -->
             </div>
+
+            <!-- Options box -->
+            <label class="option"><input type="radio" name="option" value='1'/> <span id="opt1"></span> </label>
+            <label class="option"><input type="radio" name="option" value='2'/> <span id="opt2"></span> </label>
+            <label class="option"><input type="radio" name="option" value='3'/> <span id="opt3"></span> </label>
+
+            <!-- Next Button -->
+            <button id="next-Btn" class="next-Btn" onclick = "loadNextQuestion();">Next Question </button>
 
             <!--Result Box-->
             <div id= "result">
