@@ -30,7 +30,7 @@ $("#start-btn").on('click',function(){
     $('#timecount').show();
     $('#question').show();
     $('#result').hide();
-    countdown(3);
+    countdown(35);
     questionDisplay ();
     //timeUp();
 
@@ -146,19 +146,23 @@ var questionDisplay = function()
         //Create question boxes by js and attach it to div#question 
         var questionDiv = $('<div id= "questionBox"></div>');
         $(questionDiv).append(questions[i].question) //Assign the question loop to JS questionDiv variable
-        $("#question").append(questionDiv); //Then append that variable to HTML question Div
-
+        //Then append that variable to HTML question Div
+        $("#question").append(questionDiv); 
 
         //Create answer boxes by Js and attach it to div#question
         var answerDiv = $('<div id = "answerBox"></div>');
-        var radioCheck1 = $('<input type="radio" name="questions" value="' + questions[i].answers.a + '"/>')
-        var radioCheck2 = $('<input type="radio" name="questions" value="' + questions[i].answers.b + '"/>')
-        var radioCheck3 = $('<input type="radio" name="questions" value="' + questions[i].answers.c + '"/>')
+
+        var radioCheck1 = $('<label class="option"><input type="radio" name="option" value="' + questions[i].answers.a + '"/> </label>')
+        var radioCheck2 = $('<label class="option"><input type="radio" name="option" value="' + questions[i].answers.b + '"/> </label>')
+        var radioCheck3 = $('<label class="option"><input type="radio" name="option" value="' + questions[i].answers.c + '"/> </label>')
+        //var radioCheck1 = $('<input type="radio" name="questions" value="' + questions[i].answers.a + '"/>')
+        //var radioCheck2 = $('<input type="radio" name="questions" value="' + questions[i].answers.b + '"/>')
+        //var radioCheck3 = $('<input type="radio" name="questions" value="' + questions[i].answers.c + '"/>')
         $(answerDiv).append(radioCheck1 , questions[i].answers.a);
         $(answerDiv).append(radioCheck2 , questions[i].answers.b);
         $(answerDiv).append(radioCheck3 , questions[i].answers.c);
-        //$(answerDiv).append([questions[i].answers.a , questions[i].answers.b , questions[i].answers.c])
-        $("#question").append(answerDiv);
+
+        $("#question").append(answerDiv); //Then append answer variable to HTML question Div
 
 
 

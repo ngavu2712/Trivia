@@ -24,7 +24,7 @@ h3.intro {
 }
 div#questionBox {
     border: 2px dotted black;
-    height: 100px;
+    height: 70px;
     margin: 10px;
     white-space: normal;
 }
@@ -34,5 +34,8 @@ button#submit-btn {
     margin-bottom: 30px;
 }
 
+label.option {
+    margin: 20px;
+}
 
 
