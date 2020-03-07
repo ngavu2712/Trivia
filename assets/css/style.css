@@ -23,10 +23,11 @@ h3.intro {
     color: white;
 }
 div#questionBox {
-    border: 2px dotted black;
+    border: 4px dashed black;
     height: 70px;
     margin: 10px;
     white-space: normal;
+    color: rgb(255, 174, 0);
 }
 
 button#submit-btn {
