@@ -21,18 +21,27 @@ Users choose their answer then hit Submit button, question box hide and result b
 $(document).ready(function(){
 
 $("#timecount").hide();
-$("#game").hide();
+$("#question").hide();
 $('#result').hide();
 
+//What happen after user click Start
 $("#start-btn").on('click',function(){
     $(this).parent().hide(); //hide the start box before user click start
     $('#timecount').show();
-    $('#game').show();
+    $('#question').show();
+    $('#result').hide();
     countdown(3);
     questionDisplay ();
     //timeUp();
 
 })
+
+//What happen after user click Submit
+$('#submit-btn').on('click' , function () {
+    $('#result').show();
+}) 
+
+
 
 
 var correct = 0 ;
@@ -128,27 +137,46 @@ var questionDisplay = function()
     {
     //Create a loop to display question on a new Div
     for (var i=0 ; i < questions.length ; i++) {
-        console.log(questions[i].question);
+        console.log(questions[i].question); //log the question out to test if it's running
+
+        //Append linebreak
         var linebreak =$('<br />');
+        $('#question').append(linebreak);
+
+        //Create question boxes by js and attach it to div#question 
         var questionDiv = $('<div id= "questionBox"></div>');
-        $(questionDiv).append(questions[i].question)
-        $("#question").append(questionDiv); 
+        $(questionDiv).append(questions[i].question) //Assign the question loop to JS questionDiv variable
+        $("#question").append(questionDiv); //Then append that variable to HTML question Div
 
-        //$("#questionBox").append(questions[i].question); //Append question list to the game
 
-        $('#col1').append(questions[i].answers.a); //Append answer "a" list to the game
-        //$('#opt1').append('<input type="radio" name="questions" value="' + questions[i].answers.a + '"/>'); //Create an input ratio for multiple choice
+        //Create answer boxes by Js and attach it to div#question
+        var answerDiv = $('<div id = "answerBox"></div>');
+        var radioCheck1 = $('<input type="radio" name="questions" value="' + questions[i].answers.a + '"/>')
+        var radioCheck2 = $('<input type="radio" name="questions" value="' + questions[i].answers.b + '"/>')
+        var radioCheck3 = $('<input type="radio" name="questions" value="' + questions[i].answers.c + '"/>')
+        $(answerDiv).append(radioCheck1 , questions[i].answers.a);
+        $(answerDiv).append(radioCheck2 , questions[i].answers.b);
+        $(answerDiv).append(radioCheck3 , questions[i].answers.c);
+        //$(answerDiv).append([questions[i].answers.a , questions[i].answers.b , questions[i].answers.c])
+        $("#question").append(answerDiv);
+
+
+
+
+        /* $('#col1').append(questions[i].answers.a); //Append answer "a" list to the game
+        $('#opt1').append('<input type="radio" name="questions" value="' + questions[i].answers.a + '"/>'); //Create an input ratio for multiple choice
        
         
         $('#col2').append(questions[i].answers.b); //Append answer "b" list to the game
-        //$('#opt2').append('<input type="radio" name="questions" value="' + questions[i].answers.b + '"/>');
+        $('#opt2').append('<input type="radio" name="questions" value="' + questions[i].answers.b + '"/>');
         
         $('#col3').append(questions[i].answers.c); //Append answer "c" list to the game
-        //$('#opt3').append('<input type="radio" name="questions" value="' + questions[i].answers.c + '"/>');
-
-        $('#question').append(linebreak);
-        
+        $('#opt3').append('<input type="radio" name="questions" value="' + questions[i].answers.c + '"/>'); */
         }  
+
+        //Submit Button
+        var submitBtn = $('<button type="button" class="btn btn-primary black-background white" id="submit-btn">Submit</button>');
+        $('#question').append(submitBtn);
     }
 
 

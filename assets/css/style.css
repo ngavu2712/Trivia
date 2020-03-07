@@ -29,18 +29,9 @@ div#questionBox {
     white-space: normal;
 }
 
-div#optionBox {
-    border: 1px solid white;
-    
-}
-
-label.option {
-    border: 1px solid white;
-    
-}
-
-div.col-sm {
-    border: 1px solid black;
+button#submit-btn {
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 
