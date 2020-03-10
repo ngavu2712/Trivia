@@ -36,14 +36,6 @@ $("#start-btn").on('click',function(){
 
 })
 
-//What happen after user click Submit
-$('#submit-btn').on('click' , function () {
-    $('#result').show();
-}) 
-
-
-
-
 var correct = 0 ;
 var incorrect = 0 ;
 var unanswer = 0 ;
@@ -132,7 +124,7 @@ var questions = [
             correctAnswer: "Martin Luther King Jr" 
         } ];
 
-//Question Display function 
+//QUESTION DISPLAY FUNCTION 
 var questionDisplay = function() 
     {
     //Create a loop to display question on a new Div
@@ -152,9 +144,9 @@ var questionDisplay = function()
         //Create answer boxes by Js and attach it to div#question
         var answerDiv = $('<div id = "answerBox"></div>');
 
-        var radioCheck1 = $('<label class="option"><input type="radio" name="option" value="' + questions[i].answers.a + '"/> </label>')
-        var radioCheck2 = $('<label class="option"><input type="radio" name="option" value="' + questions[i].answers.b + '"/> </label>')
-        var radioCheck3 = $('<label class="option"><input type="radio" name="option" value="' + questions[i].answers.c + '"/> </label>')
+        var radioCheck1 = $('<label class="option"><input type="radio" id="option'+i+'"name="option' + i + '"value="' + questions[i].answers.a + '"/> </label>')
+        var radioCheck2 = $('<label class="option"><input type="radio" id="option'+i+'"name="option' + i + '"value="' + questions[i].answers.b + '"/> </label>')
+        var radioCheck3 = $('<label class="option"><input type="radio" id="option'+i+'"name="option' + i + '"value="' + questions[i].answers.c + '"/> </label>')
         //var radioCheck1 = $('<input type="radio" name="questions" value="' + questions[i].answers.a + '"/>')
         //var radioCheck2 = $('<input type="radio" name="questions" value="' + questions[i].answers.b + '"/>')
         //var radioCheck3 = $('<input type="radio" name="questions" value="' + questions[i].answers.c + '"/>')
@@ -164,18 +156,6 @@ var questionDisplay = function()
 
         $("#question").append(answerDiv); //Then append answer variable to HTML question Div
 
-
-
-
-        /* $('#col1').append(questions[i].answers.a); //Append answer "a" list to the game
-        $('#opt1').append('<input type="radio" name="questions" value="' + questions[i].answers.a + '"/>'); //Create an input ratio for multiple choice
-       
-        
-        $('#col2').append(questions[i].answers.b); //Append answer "b" list to the game
-        $('#opt2').append('<input type="radio" name="questions" value="' + questions[i].answers.b + '"/>');
-        
-        $('#col3').append(questions[i].answers.c); //Append answer "c" list to the game
-        $('#opt3').append('<input type="radio" name="questions" value="' + questions[i].answers.c + '"/>'); */
         }  
 
         //Submit Button
@@ -183,28 +163,47 @@ var questionDisplay = function()
         $('#question').append(submitBtn);
     }
 
+    //gradeQuiz function
+    $('#question').on('click', '#submit-btn', function(){
+        console.log('submit-btn');
+     
+        for (var i =0; i < questions.length; i++) {
+            console.log($('#option'+i).val())
+             if($('#option'+i).val() === questions[i].correctAnswer) {
+                 correct++;
+             } else {
+                 incorrect++;
+             }; 
+         };
+         countdown();
+     
+         $('#timecount').fadeOut(500);
+         $('#result').show();
+         $('#correctAnswer').append(correct);
+         $('#incorrectAnswer').append(incorrect);
+     
+     })
 
-//Count down function
+//COUNT DOWN FUNCTION
 var countdown = function(seconds) {
 
     var timer = setInterval(function () {
         seconds -= 1;
-        $("#remainingTime").text(seconds);
+        $("#remainingTime").html(seconds);
 
         if (seconds <= 0) {
             $('#countdown').fadeOut(500);
-            correct =0;
-            incorrect =0;
-            unanswer =0;
+           
 
         for ( var c = 0; c < questions.length ; c++) {
-            if ($('input:radio[name="' + questions[c].correctAnswer + ' "]:checked').val() === questions[c].correctAnswer) {
+            console.log ($('#option'+c).val());
+            if (($('#option'+c).val()) === questions[c].correctAnswer) {
                 correct++;
-                console.log("this is correct! number: " + c)
+                console.log(correct)
 
             } else {
                 incorrect++;
-                console.log("this is wrong: " + c)
+                console.log(incorrect)
             };
         }
         $('#correctAnswer').append(correct);
@@ -216,35 +215,7 @@ var countdown = function(seconds) {
     }
 },1000);
 
-$('#submit-btn').on('click',function() {
-    clearInterval(timer);
-})
-
 };
 
-//gradeQuiz function
 
-var gradeQuiz = $('#submit-btn').on('click', function(){
-   
-
-    for (var i =0; i < questions.length; i++) {
-        if($(' input:radio[name="' + questions[i].correctAnswer + '"]:checked').val() === questions[i].correctAnswer) {
-            correct++;
-        } else {
-            incorrect++;
-        }; 
-    };
-    countdown();
-
-    $('#timecount').fadeOut(500);
-    $('#result').show();
-    $('#correctAnswer').append(correct);
-    $('#incorrectAnswer').append(incorrect);
-
-})
-
-//TimeUp function
-//var timeUp = function () {
-//   setTimeOut (countdown(),0);
-//}
 })
